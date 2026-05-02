@@ -13,10 +13,11 @@ int main(int argc, char* argv[]) {
     Background bg(100, 50);
     bg.printbackground();
 
-//    Pixel a[300][150];
-//    a[100][120] = test.imagepixelinfo(100, 120);
+    int red     = test.imagepixelred(100, 200);
+    int green   = test.imagepixelred(100, 200);
+    int blue    = test.imagepixelred(100, 200);
 
-//    std::cout << "at location 100, 120, the color profile is: r = " << a[100][120].r << ", g = " << a[100][120].g << ", b = " << a[100][120].b << "\n";
+    std::cout << RED << "\nThe color profile at location 100, 200 is: r = " << red << ", g = " << green << ", b = " << blue << "\n" << RESET;
 
     std::cout << "The width of the original image is: "             << test.imagewidth() << "\n";
     std::cout << "The height of the original image is: "            << test.imageheight() << "\n";

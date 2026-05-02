@@ -5,12 +5,17 @@ class Imageloader {
         char* filename;
         int width, height, channels;
         Pixel p[SCREEN_WIDTH][SCREEN_HEIGHT];
+        unsigned char* data;
 
     public:
-        Imageloader(char* file);
+        Imageloader(char*);
         ~Imageloader();
 
-        Pixel imagepixelinfo(int a, int b);
+//      Pixel imagepixelinfo(int, int);
+
+        int imagepixelred(int, int);
+        int imagepixelgreen(int, int);
+        int imagepixelblue(int, int);
 
         int imagewidth();
         int imageheight();

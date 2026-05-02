@@ -5,7 +5,7 @@
 #include "../include/stb_image.h"
 
 Imageloader::Imageloader(char* file) : filename(file) {
-    unsigned char* data = stbi_load(filename, &width, &height, &channels, 0);
+    data = stbi_load(filename, &width, &height, &channels, 0);
 
     if(data == NULL) {
         std::cout << "Error loading the data\n";
@@ -13,14 +13,16 @@ Imageloader::Imageloader(char* file) : filename(file) {
 
     int pixelOffset;
 
-    for(int j = 0; j < width; j++) {
-        for(int i = 0; i < height; i++) {
-            pixelOffset = (j * width + i) * channels;
-            p[i][j].r = data[pixelOffset];
-            p[i][j].g = data[pixelOffset + 1];
-            p[i][j].b = data[pixelOffset + 2];
-        }
-    }
+// This isn't working
+
+//  for(int j = 0; j < height; j++) {
+//      for(int i = 0; i < width; i++) {
+//          pixelOffset = (i * channels) + (j * width * channels);
+//          p[i][j].r = data[pixelOffset];
+//          p[i][j].g = data[pixelOffset + 1];
+//          p[i][j].b = data[pixelOffset + 2];
+//      }
+//  }
 }
 
 Imageloader::~Imageloader() {
@@ -28,8 +30,23 @@ Imageloader::~Imageloader() {
 }
 
 // I have made "Pixel" a global struct since normally, it's causing namespacing issues and whatnot.
-Pixel Imageloader::imagepixelinfo(int a, int b) {
-    return p[a][b];
+//  Pixel Imageloader::imagepixelinfo(int a, int b) {
+//      return p[a][b];
+//  }
+
+int Imageloader::imagepixelred(int a, int b) {
+    int re = data[a * channels + b * width * channels];
+    return re;
+}
+
+int Imageloader::imagepixelgreen(int a, int b) {
+    int gr = data[a * channels + b * width * channels + 1];
+    return gr;
+}
+
+int Imageloader::imagepixelblue(int a, int b) {
+    int bl = data[a * channels + b * width * channels + 2];
+    return bl;
 }
 
 int Imageloader::imagewidth() {

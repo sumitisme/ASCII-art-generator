@@ -4,7 +4,7 @@
 Background::Background(int a, int b) : x_coord(a), y_coord(b){
     for(int j = 0; j < y_coord; j++) {
         for(int i = 0; i < x_coord; i++) {
-            map[i][j] = '.';
+            map[i][j] = '#';
         }
     }
 }

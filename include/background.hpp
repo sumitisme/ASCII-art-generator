@@ -8,7 +8,7 @@ class Background {
         int x_coord, y_coord;
     
     public:
-        Background(int a, int b);
+        Background(int, int);
         ~Background();
 
         void printbackground();

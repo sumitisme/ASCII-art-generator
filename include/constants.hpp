@@ -7,8 +7,16 @@
 #include <vector>
 
 // Maximum screensize
-#define SCREEN_WIDTH 200 
-#define SCREEN_HEIGHT 100 
+#define SCREEN_WIDTH 400 
+#define SCREEN_HEIGHT 200 
+
+#define STRIDE 
+
+struct Pixel {
+    int r;
+    int g;
+    int b;
+};
 
 //  #define X_STRIDE  
 //  #define Y_STRIDE 

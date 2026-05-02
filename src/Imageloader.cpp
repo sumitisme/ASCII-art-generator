@@ -11,11 +11,25 @@ Imageloader::Imageloader(char* file) : filename(file) {
         std::cout << "Error loading the data\n";
     }
 
-    std::cout << &data << "\n";
+    int pixelOffset;
+
+    for(int j = 0; j < width; j++) {
+        for(int i = 0; i < height; i++) {
+            pixelOffset = (j * width + i) * channels;
+            p[i][j].r = data[pixelOffset];
+            p[i][j].g = data[pixelOffset + 1];
+            p[i][j].b = data[pixelOffset + 2];
+        }
+    }
 }
 
 Imageloader::~Imageloader() {
     std::cout << "Imageloader instance destroyed\n";
+}
+
+// I have made "Pixel" a global struct since normally, it's causing namespacing issues and whatnot.
+Pixel Imageloader::imagepixelinfo(int a, int b) {
+    return p[a][b];
 }
 
 int Imageloader::imagewidth() {

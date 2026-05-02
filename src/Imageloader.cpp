@@ -1,5 +1,4 @@
-#include <iostream>
-
+#include "../include/constants.hpp"
 #include "../include/Imageloader.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -11,10 +10,12 @@ Imageloader::Imageloader(char* file) : filename(file) {
     if(data == NULL) {
         std::cout << "Error loading the data\n";
     }
+
+    std::cout << &data << "\n";
 }
 
 Imageloader::~Imageloader() {
-    std::cout << "Instance cleared up\n";
+    std::cout << "Imageloader instance destroyed\n";
 }
 
 int Imageloader::imagewidth() {

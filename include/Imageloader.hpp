@@ -9,6 +9,7 @@ class Imageloader {
         Imageloader(char* file);
         ~Imageloader();
 
+        int imageresize();
         int imagewidth();
         int imageheight();
         int imagechannels();

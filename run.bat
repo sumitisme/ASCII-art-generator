@@ -1,4 +1,4 @@
-@echo on
+@echo off 
 set BUILD_DIR=build
 
 if "%~1" == "" (
@@ -12,6 +12,6 @@ mingw32-make
 
 cd ..
 
-.\build\ASCII-generator.exe %~1
+start "ASCII generator projec" cmd /k ".\build\ASCII-generator.exe %~1"
 
 echo success!

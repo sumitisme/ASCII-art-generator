@@ -34,29 +34,29 @@ Imageloader::~Imageloader() {
 //      return p[a][b];
 //  }
 
-int Imageloader::imagepixelred(int a, int b) {
+int Imageloader::imagePixelRed(int a, int b) {
     int re = data[a * channels + b * width * channels];
     return re;
 }
 
-int Imageloader::imagepixelgreen(int a, int b) {
+int Imageloader::imagePixelGreen(int a, int b) {
     int gr = data[a * channels + b * width * channels + 1];
     return gr;
 }
 
-int Imageloader::imagepixelblue(int a, int b) {
+int Imageloader::imagePixelBlue(int a, int b) {
     int bl = data[a * channels + b * width * channels + 2];
     return bl;
 }
 
-int Imageloader::imagewidth() {
+int Imageloader::imageWidth() {
     return width;
 }
 
-int Imageloader::imageheight() {
+int Imageloader::imageHeight() {
     return height;
 }
 
-int Imageloader::imagechannels() {
+int Imageloader::imageChannels() {
     return channels;
 }

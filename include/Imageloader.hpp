@@ -13,11 +13,11 @@ class Imageloader {
 
 //      Pixel imagepixelinfo(int, int);
 
-        int imagepixelred(int, int);
-        int imagepixelgreen(int, int);
-        int imagepixelblue(int, int);
+        int imagePixelRed(int, int);
+        int imagePixelGreen(int, int);
+        int imagePixelBlue(int, int);
 
-        int imagewidth();
-        int imageheight();
-        int imagechannels();
+        int imageWidth();
+        int imageHeight();
+        int imageChannels();
 };

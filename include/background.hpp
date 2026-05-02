@@ -11,5 +11,6 @@ class Background {
         Background(int, int);
         ~Background();
 
-        void printbackground();
+        void printBackground();
+        void BackgroundEditor();
 };

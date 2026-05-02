@@ -18,7 +18,9 @@ const std::string YELLOW = "\033[33m";
 const std::string BLUE = "\033[34m";
 const std::string RESET = "\033[0m";
 
-#define STRIDE 
+// For the brightness
+
+char BArray[] = {'.', '-' ,'*', '~', '=', '+', '#', '$', '&', 'X', '@'};
 
 struct Pixel {
     unsigned char r, g, b;

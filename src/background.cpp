@@ -9,7 +9,7 @@ Background::Background(int a, int b) : x_coord(a), y_coord(b){
     }
 }
 
-void Background::printbackground() {
+void Background::printBackground() {
     for(int j = 0; j < y_coord; j++) {
         for(int i = 0; i < x_coord; i++) {
             std::cout << map[i][j];

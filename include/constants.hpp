@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <math.h>
 
 // Maximum screensize
 #define SCREEN_WIDTH 400 
@@ -22,8 +24,16 @@ const std::string RESET = "\033[0m";
 
 char BArray[] = {'.', '-' ,'*', '~', '=', '+', '#', '$', '&', 'X', '@'};
 
-struct Pixel {
+struct RGB {
     unsigned char r, g, b;
+};
+
+struct HSV {
+    int h, s, v;
+};
+
+struct map {
+
 };
 
 //  #define X_STRIDE  

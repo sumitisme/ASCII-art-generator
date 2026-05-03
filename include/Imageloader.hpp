@@ -4,7 +4,7 @@ class Imageloader {
     private:
         char* filename;
         int width, height, channels;
-        Pixel p[SCREEN_WIDTH][SCREEN_HEIGHT];
+//      Pixel p[SCREEN_WIDTH][SCREEN_HEIGHT];
         unsigned char* data;
 
     public:
@@ -16,6 +16,8 @@ class Imageloader {
         int imagePixelRed(int, int);
         int imagePixelGreen(int, int);
         int imagePixelBlue(int, int);
+
+        int imageDropRes(int, int);
 
         int imageWidth();
         int imageHeight();

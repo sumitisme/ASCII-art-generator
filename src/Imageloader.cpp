@@ -3,6 +3,9 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "../include/stb_image.h"
 
+// a, i -> x
+// b, j -> y
+
 HSV Imageloader::RGBtoHSV(RGB in) {
     HSV out;
     int vmax, vmin;
@@ -25,13 +28,13 @@ HSV Imageloader::RGBtoHSV(RGB in) {
         out.h = 0;
     }
     else if(vmax == in.r) {
-        out.h = 60 * (fmod((float)((in.g - in.b) / (vmax - vmin)), 6));
+        out.h = 60 * (fmod(((float)(in.g - in.b) / (float)(vmax - vmin)), 6));
     }
     else if(vmax == in.g) {
-        out.h = 60 * ((float)((in.b - in.r) / (vmax - vmin)) + 2);
+        out.h = 60 * (((float)(in.b - in.r) / (float)(vmax - vmin)) + 2);
     }
     else if(vmax == in.b) {
-        out.h = 60 * ((float)((in.r - in.g) / (vmax - vmin)) + 4);
+        out.h = 60 * (((float)(in.r - in.g) / (float)(vmax - vmin)) + 4);
     }
 
     if (out.h < 0) out.h += 360;
@@ -46,8 +49,8 @@ HSV Imageloader::AveragingFunction(int a, int b, int XFactor, int YFactor) {
 
     avg = {.h = 0, .s = 0, .v = 0};
 
-    for(int j = a; j < a + YFactor; j++) {
-        for(int i = b; i < b + XFactor; i++) {
+    for(int j = b; j < b + YFactor; j++) {
+        for(int i = a; i < a + XFactor; i++) {
             in.r = imagePixelRed(i, j);
             in.g = imagePixelGreen(i, j);
             in.b = imagePixelBlue(i, j);
@@ -102,28 +105,28 @@ Imageloader::~Imageloader() {
 //  }
 
 int Imageloader::imagePixelRed(int a, int b) {
-    int re = data[b * channels + a * width * channels];
+    int re = data[a * channels + b * width * channels];
     return re;
 }
 
 int Imageloader::imagePixelGreen(int a, int b) {
-    int gr = data[b * channels + a * width * channels + 1];
+    int gr = data[a * channels + b * width * channels + 1];
     return gr;
 }
 
 int Imageloader::imagePixelBlue(int a, int b) {
-    int bl = data[b * channels + a * width * channels + 2];
+    int bl = data[a * channels + b * width * channels + 2];
     return bl;
 }
 
 Map Imageloader::imageDropRes(int a, int b) { // Input will be the final screen_width and screen_height
     HSV averaged;
 
-    XFactor = ceil(width / a);
-    YFactor = ceil(height / b);
+    XFactor = width / a;
+    YFactor = height / b;
 
-    image.Xsize = ceil(width / XFactor);
-    image.Ysize = ceil(height / YFactor);
+    image.Xsize = a;
+    image.Ysize = b;
 
     // Averaging the pixel colors to reduce the res
     for(int j = 0; j < image.Ysize; j++) {
@@ -131,9 +134,11 @@ Map Imageloader::imageDropRes(int a, int b) { // Input will be the final screen_
             int startX = i * XFactor;
             int startY = j * YFactor;
 
-            averaged = AveragingFunction(startX, startY, XFactor, YFactor);
-            image.hueMap[i][j]      = averaged.h;
-            image.valueMap[i][j]    = averaged.v;
+            if(startY + YFactor <= height && startX + XFactor <= width) {
+                averaged = AveragingFunction(startX, startY, XFactor, YFactor);
+                image.hueMap[j][i]      = averaged.h;
+                image.valueMap[j][i]    = averaged.v;
+            }
         }
     }
 

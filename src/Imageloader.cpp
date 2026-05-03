@@ -1,4 +1,3 @@
-#include "../include/constants.hpp"
 #include "../include/Imageloader.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -13,7 +12,7 @@ Imageloader::Imageloader(char* file) : filename(file) {
 
     int pixelOffset;
 
-// This isn't working
+// This isn't working. Gave up on this. I can't even tell why tf it isn't working
 
 //  for(int j = 0; j < height; j++) {
 //      for(int i = 0; i < width; i++) {
@@ -29,7 +28,9 @@ Imageloader::~Imageloader() {
     std::cout << "Imageloader instance destroyed\n";
 }
 
-// I have made "Pixel" a global struct since normally, it's causing namespacing issues and whatnot.
+// I have made "Pixel" a global struct since normally, it's causing namespacing issues and whatnot. 
+// This shit didn't work at all whut.
+
 //  Pixel Imageloader::imagepixelinfo(int a, int b) {
 //      return p[a][b];
 //  }
@@ -47,6 +48,10 @@ int Imageloader::imagePixelGreen(int a, int b) {
 int Imageloader::imagePixelBlue(int a, int b) {
     int bl = data[a * channels + b * width * channels + 2];
     return bl;
+}
+
+Map Imageloader::imageDropRes(int a, int b) {
+
 }
 
 int Imageloader::imageWidth() {

@@ -1,13 +1,14 @@
-#include "../include/constants.hpp"
-
 #include "../include/Imageloader.hpp"
 #include "../include/background.hpp"
+
+// For the Value
+char BArray[] = {'.', '-' ,'*', '~', '=', '+', '#', '$', '&', 'X', '@'};
 
 HSV RGBtoHSV(RGB in) {
     HSV out;
     int vmax, vmin;
-    vmax = std::max(in.r, in.g, in.b);
-    vmin = std::min(in.r, in.g, in.b);
+    vmax = std::max(in.r, std::max(in.g, in.b));
+    vmin = std::min(in.r, std::min(in.g, in.b));
 
     // V
     out.v = vmax;

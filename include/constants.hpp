@@ -1,5 +1,4 @@
-#ifndef _CONSTANTS_
-#define _CONSTANTS_
+#pragma once
 
 #include <iostream>
 #include <cstdlib>
@@ -20,10 +19,6 @@ const std::string YELLOW = "\033[33m";
 const std::string BLUE = "\033[34m";
 const std::string RESET = "\033[0m";
 
-// For the brightness
-
-char BArray[] = {'.', '-' ,'*', '~', '=', '+', '#', '$', '&', 'X', '@'};
-
 struct RGB {
     unsigned char r, g, b;
 };
@@ -32,11 +27,10 @@ struct HSV {
     int h, s, v;
 };
 
-struct map {
-
+struct Map {
+    int valueMap[SCREEN_WIDTH][SCREEN_HEIGHT];
+    int hueMap[SCREEN_WIDTH][SCREEN_HEIGHT];
 };
 
 //  #define X_STRIDE  
 //  #define Y_STRIDE 
-
-#endif

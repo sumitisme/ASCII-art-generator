@@ -8,7 +8,13 @@ class Imageloader {
         int width, height, channels;
 //      Pixel p[SCREEN_WIDTH][SCREEN_HEIGHT];
         unsigned char* data;
+        int XFactor;
+        int YFactor;
+
         Map image;
+
+        HSV AveragingFunction(int, int, int, int); // Private on purpose
+        HSV RGBtoHSV(RGB in); // Private on purpose
 
     public:
         Imageloader(char*);

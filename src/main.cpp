@@ -4,43 +4,57 @@
 // For the Value
 char BArray[] = {'.', '-' ,'*', '~', '=', '+', '#', '$', '&', 'X', '@'};
 
-HSV RGBtoHSV(RGB in) {
-    HSV out;
-    int vmax, vmin;
-    vmax = std::max(in.r, std::max(in.g, in.b));
-    vmin = std::min(in.r, std::min(in.g, in.b));
+void printer(Map out) {
+    Background bg(out);
 
-    // V
-    out.v = vmax;
+    int value;
+    int hue;
+    for(int i = 0; i < out.Ysize; i++) {
+        for(int j = 0; j < out.Xsize; j++) {
+            value = out.valueMap[i][j];
+            hue = out.hueMap[i][j];
 
-    // S
-    if(out.v == 0) {
-        out.s = 0;
+            if(value < 23) {
+                bg.setBackground(i, j, BArray[0]);
+            }
+            else if(value >= 23 && value < 46) {
+                bg.setBackground(i, j, BArray[1]);
+            }
+            else if(value >= 46 && value < 69) {
+                bg.setBackground(i, j, BArray[2]);
+            }
+            else if(value >= 69 && value < 92) {
+                bg.setBackground(i, j, BArray[3]);
+            }
+            else if(value >= 92 && value < 115) {
+                bg.setBackground(i, j, BArray[4]);
+            }
+            else if(value >= 115 && value < 138) {
+                bg.setBackground(i, j, BArray[5]);
+            }
+            else if(value >= 138 && value < 161) {
+                bg.setBackground(i, j, BArray[6]);
+            }
+            else if(value >= 161 && value < 184) {
+                bg.setBackground(i, j, BArray[7]);
+            }
+            else if(value >= 184 && value < 207) {
+                bg.setBackground(i, j, BArray[8]);
+            }
+            else if(value >= 207 && value < 230) {
+                bg.setBackground(i, j, BArray[9]);
+            }
+            else if(value >= 230) {
+                bg.setBackground(i, j, BArray[10]);
+            }
+        }
     }
-    else {
-        out.s = vmax - vmin;
-    }
-
-    // H
-    if((vmax - vmin) == 0) {
-        out.h = 0;
-    }
-    else if(vmax = in.r) {
-        out.h = 60 * (fmod((in.g - in.b) / (vmax - vmin), 6));
-    }
-    else if(vmax = in.g) {
-        out.h = 60 * ((in.b - in.r) / (vmax - vmin) + 2);
-    }
-    else if(vmax = in.b) {
-        out.h = 60 * ((in.r - in.g) / (vmax - vmin) + 4);
-    }
-
-    if (out.h < 0) out.h += 360;
-
-    return out;
+    bg.printBackground();
 }
 
 int main(int argc, char* argv[]) {
+    Map finalOutput;
+
     if(argv[1] == "") {
         std::cout << "Filename not given\n";
         return -1;
@@ -48,8 +62,12 @@ int main(int argc, char* argv[]) {
     Imageloader test(argv[1]);
 
     // Testing
-    Background bg(400, 200);
-    bg.printBackground();
+
+    finalOutput = test.imageDropRes(SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    printer(finalOutput);
+
+    /* //Testing and debugging stuff here
 
     int red     = test.imagePixelRed(100, 200);
     int green   = test.imagePixelRed(100, 200);
@@ -65,5 +83,8 @@ int main(int argc, char* argv[]) {
     std::cout << "The width of the original image is: "             << test.imageWidth() << "\n";
     std::cout << "The height of the original image is: "            << test.imageHeight() << "\n";
     std::cout << "The no of channels in the original image is: "    << test.imageChannels() << "\n";
+
+    */
+
     return 0;
 }

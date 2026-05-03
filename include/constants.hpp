@@ -30,6 +30,9 @@ struct HSV {
 struct Map {
     int valueMap[SCREEN_WIDTH][SCREEN_HEIGHT];
     int hueMap[SCREEN_WIDTH][SCREEN_HEIGHT];
+
+    int Xsize;
+    int Ysize;
 };
 
 //  #define X_STRIDE  

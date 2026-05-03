@@ -8,9 +8,9 @@ class Background {
         int x_coord, y_coord;
     
     public:
-        Background(int, int);
+        Background(Map);
         ~Background();
 
+        void setBackground(int, int, char);
         void printBackground();
-        void BackgroundEditor();
 };

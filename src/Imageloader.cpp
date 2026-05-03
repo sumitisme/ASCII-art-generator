@@ -25,13 +25,13 @@ HSV Imageloader::RGBtoHSV(RGB in) {
         out.h = 0;
     }
     else if(vmax == in.r) {
-        out.h = 60 * (fmod((in.g - in.b) / (vmax - vmin), 6));
+        out.h = 60 * (fmod((float)((in.g - in.b) / (vmax - vmin)), 6));
     }
     else if(vmax == in.g) {
-        out.h = 60 * ((in.b - in.r) / (vmax - vmin) + 2);
+        out.h = 60 * ((float)((in.b - in.r) / (vmax - vmin)) + 2);
     }
     else if(vmax == in.b) {
-        out.h = 60 * ((in.r - in.g) / (vmax - vmin) + 4);
+        out.h = 60 * ((float)((in.r - in.g) / (vmax - vmin)) + 4);
     }
 
     if (out.h < 0) out.h += 360;
@@ -46,8 +46,8 @@ HSV Imageloader::AveragingFunction(int a, int b, int XFactor, int YFactor) {
 
     avg = {.h = 0, .s = 0, .v = 0};
 
-    for(int i = a; i < a + YFactor; i++) {
-        for(int j = b; j < b + XFactor; j++) {
+    for(int j = a; j < a + YFactor; j++) {
+        for(int i = b; i < b + XFactor; i++) {
             in.r = imagePixelRed(i, j);
             in.g = imagePixelGreen(i, j);
             in.b = imagePixelBlue(i, j);
@@ -102,17 +102,17 @@ Imageloader::~Imageloader() {
 //  }
 
 int Imageloader::imagePixelRed(int a, int b) {
-    int re = data[a * channels + b * width * channels];
+    int re = data[b * channels + a * width * channels];
     return re;
 }
 
 int Imageloader::imagePixelGreen(int a, int b) {
-    int gr = data[a * channels + b * width * channels + 1];
+    int gr = data[b * channels + a * width * channels + 1];
     return gr;
 }
 
 int Imageloader::imagePixelBlue(int a, int b) {
-    int bl = data[a * channels + b * width * channels + 2];
+    int bl = data[b * channels + a * width * channels + 2];
     return bl;
 }
 
@@ -126,10 +126,10 @@ Map Imageloader::imageDropRes(int a, int b) { // Input will be the final screen_
     image.Ysize = ceil(height / YFactor);
 
     // Averaging the pixel colors to reduce the res
-    for(int i = 0; i < image.Ysize; i++) {
-        for(int j = 0; j < image.Xsize; j++) {
-            int startX = i * YFactor;
-            int startY = j * XFactor;
+    for(int j = 0; j < image.Ysize; j++) {
+        for(int i = 0; i < image.Xsize; i++) {
+            int startX = i * XFactor;
+            int startY = j * YFactor;
 
             averaged = AveragingFunction(startX, startY, XFactor, YFactor);
             image.hueMap[i][j]      = averaged.h;

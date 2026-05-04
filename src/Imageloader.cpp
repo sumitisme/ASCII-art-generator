@@ -75,6 +75,7 @@ Imageloader::Imageloader(char* file) : filename(file) {
 
     if(data == NULL) {
         std::cout << "Error loading the data\n";
+        exit(1);
     }
 
 
@@ -123,7 +124,7 @@ Map Imageloader::imageDropRes(int a, int b) { // Input will be the final screen_
     HSV averaged;
 
     XFactor = width / a;
-    YFactor = height / b;
+    YFactor = height / b; // Since in terminal, the words have the width to height ratio of 1:2
 
     image.Xsize = a;
     image.Ysize = b;
@@ -134,7 +135,9 @@ Map Imageloader::imageDropRes(int a, int b) { // Input will be the final screen_
             int startX = i * XFactor;
             int startY = j * YFactor;
 
-            if(startY + YFactor <= height && startX + XFactor <= width) {
+            if(startX < width && startY < height) {
+                int clampedX = std::min(XFactor, width - startX);
+                int clampedY = std::min(YFactor, width - startY);
                 averaged = AveragingFunction(startX, startY, XFactor, YFactor);
                 image.hueMap[j][i]      = averaged.h;
                 image.valueMap[j][i]    = averaged.v;

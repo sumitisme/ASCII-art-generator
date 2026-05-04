@@ -21,3 +21,11 @@
 ```shell
 .\run.bat 'image\img.jpg'
 ```
+
+# INPUT
+
+![Original Image](image/img.jpg "Coraline's mom")
+
+# OUTPUT (Am yet to fix the Hue part of the image so there's no colors yet but I may add it in the future)
+
+![Resulting Image](image/output.png "Output ASCII")

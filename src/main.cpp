@@ -4,15 +4,15 @@
 // For the Value
 char BArray[] = {'.', '-' ,'*', '~', '=', '+', '#', '$', '&', 'X', '@'};
 
-void printer(Map out) {
+void printer(Map& out) {
     Background bg(out);
 
     int value;
     int hue;
-    for(int i = 0; i < out.Ysize; i++) {
-        for(int j = 0; j < out.Xsize; j++) {
-            value = out.valueMap[i][j];
-            hue = out.hueMap[i][j];
+    for(int j = 0; j < out.Ysize; j++) {
+        for(int i = 0; i < out.Xsize; i++) {
+            value = out.valueMap[j][i];
+            hue = out.hueMap[j][i];
 
             if(value < 23) {
                 bg.setBackground(i, j, BArray[0]);
@@ -53,9 +53,9 @@ void printer(Map out) {
 }
 
 int main(int argc, char* argv[]) {
-    Map finalOutput;
+    static Map finalOutput;
 
-    if(argv[1] == "") {
+    if(argc < 2) {
         std::cout << "Filename not given\n";
         return -1;
     }
@@ -63,15 +63,22 @@ int main(int argc, char* argv[]) {
 
     // Testing
 
-    finalOutput = test.imageDropRes(SCREEN_WIDTH, SCREEN_HEIGHT);
+    finalOutput = test.imageDropRes(SCREEN_WIDTH / 2, SCREEN_HEIGHT);
+
+    std::cout << "Width: " << test.imageWidth() << " Height: " << test.imageHeight() << "\n";
+
+    int width = test.imageWidth();
+    int height = test.imageHeight();
+
+    std::cout << "XFactor: " << width/SCREEN_WIDTH << " YFactor: " << height/SCREEN_HEIGHT << "\n";
     
     printer(finalOutput);
 
     /* //Testing and debugging stuff here
 
     int red     = test.imagePixelRed(100, 200);
-    int green   = test.imagePixelRed(100, 200);
-    int blue    = test.imagePixelRed(100, 200);
+    int green   = test.imagePixelGreen(100, 200);
+    int blue    = test.imagePixelBlue(100, 200);
 
     std::cout << RED << "\nThe color profile at location 100, 200 is: r = " << red << ", g = " << green << ", b = " << blue << "\n" << RESET;
 

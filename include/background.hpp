@@ -8,7 +8,7 @@ class Background {
         int x_coord, y_coord;
     
     public:
-        Background(Map);
+        Background(const Map&);
         ~Background();
 
         void setBackground(int, int, char);

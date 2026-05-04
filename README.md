@@ -29,3 +29,7 @@
 # OUTPUT (Am yet to fix the Hue part of the image so there's no colors yet but I may add it in the future)
 
 ![Resulting Image](image/output.png "Output ASCII")
+
+# VID DEMO
+
+https://github.com/user-attachments/assets/a55961b4-8f42-4df8-bbc7-a489afd5466b
